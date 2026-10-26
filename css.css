@@ -1,0 +1,16 @@
+/* Custom Styles for QR Scanner Pro */
+#reader {
+    width: 100% !important;
+    border: none !important;
+}
+
+#reader video {
+    width: 100% !important;
+    border-radius: 0.75rem;
+    object-fit: cover;
+}
+
+/* Smooth Transitions */
+button, div {
+    transition: all 0.2s ease-in-out;
+}

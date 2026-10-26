@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced QR Code Scanner</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Html5-qrcode library -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white py-4 shadow-md">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-qrcode text-2xl"></i>
+                <span class="text-xl font-bold tracking-wide">QR Scanner Pro</span>
+            </div>
+            <span class="text-xs bg-indigo-500 px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Fast & Secure</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 flex-grow max-w-xl">
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+            <h1 class="text-2xl font-bold text-center text-gray-900 mb-2">Scan QR Code Instantly</h1>
+            <p class="text-center text-gray-500 text-sm mb-6">Scan using your camera or upload an image file containing a QR code.</p>
+
+            <!-- Tabs -->
+            <div class="flex border-b border-gray-200 mb-6">
+                <button id="tab-camera" onclick="switchTab('camera')" class="flex-1 py-3 text-center font-medium text-indigo-600 border-b-2 border-indigo-600 focus:outline-none transition">
+                    <i class="fa-solid fa-camera mr-2"></i> Live Camera
+                </button>
+                <button id="tab-file" onclick="switchTab('file')" class="flex-1 py-3 text-center font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent focus:outline-none transition">
+                    <i class="fa-solid fa-image mr-2"></i> Upload Image
+                </button>
+            </div>
+
+            <!-- Camera View Container -->
+            <div id="camera-container" class="space-y-4">
+                <div id="reader" class="overflow-hidden rounded-xl border-2 border-dashed border-gray-300 bg-gray-50"></div>
+                <p class="text-xs text-center text-gray-400">Position the QR code within the frame to scan automatically.</p>
+            </div>
+
+            <!-- File Upload Container -->
+            <div id="file-container" class="hidden space-y-4">
+                <div class="border-2 border-dashed border-indigo-300 rounded-xl p-6 text-center bg-indigo-50 hover:bg-indigo-100/50 transition cursor-pointer" onclick="document.getElementById('qr-input-file').click()">
+                    <i class="fa-solid fa-cloud-arrow-up text-indigo-500 text-4xl mb-2"></i>
+                    <p class="text-sm font-medium text-gray-700">Click to upload or drag & drop QR image</p>
+                    <p class="text-xs text-gray-400 mt-1">Supports PNG, JPG, JPEG</p>
+                    <input type="file" id="qr-input-file" accept="image/*" class="hidden" onchange="decodeFile(event)">
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result-section" class="hidden mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">Scan Result</span>
+                    <button onclick="copyResult()" class="text-xs text-gray-500 hover:text-indigo-600 font-medium flex items-center gap-1 bg-white px-2 py-1 rounded border shadow-sm">
+                        <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div id="result-content" class="text-gray-800 break-all font-mono text-sm bg-white p-3 rounded border border-gray-200 max-h-40 overflow-y-auto mb-3"></div>
+                <div id="result-actions" class="flex flex-wrap gap-2"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500">
+        <p>&copy; 2026 QR Scanner Pro. Optimized for GitHub Pages.</p>
+    </footer>
+
+    <!-- External JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
